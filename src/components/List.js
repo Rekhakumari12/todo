@@ -3,9 +3,11 @@ import ListItem from './ListItem'
 import { DataContext } from './DataProvider'
 export default function List() {
   const [todos, setTodos] = useContext(DataContext);
+  //id getting from ListItem componet
   const switchComplete = (id) => {
+    //making exact copy of todo into newTodo
     const newTodos = [...todos]
-    newTodos.forEach((element, i) => {
+    newTodos.forEach((element, i)=> {
       if (i === id) {
         element.isCompleted = !element.isCompleted
       }
@@ -14,9 +16,9 @@ export default function List() {
   }
     const handleEditTodos = (editvalue, id) => {
       const newTodos = [...todos]
-      newTodos.forEach((todo, index) => {
-        if (index === id) {
-          todo.name=editvalue
+      newTodos.forEach((element, i)=> {
+        if (i === id) {
+          element.name=editvalue
         }
       })
       setTodos(newTodos)
@@ -25,8 +27,16 @@ export default function List() {
     <ul>
       {
         todos.map((todo, id) => {
-          return <ListItem todo={todo} id={id} key={id} checkComplete={switchComplete} handleEditTodos={handleEditTodos}/>;
-        })
+          return(
+          <ListItem
+            todo={todo}
+            id={id}
+            key={id}
+            checkComplete={switchComplete}
+            handleEditTodos={handleEditTodos}
+          />
+        )
+      })
       }
   </ul>
   )

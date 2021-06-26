@@ -31,7 +31,6 @@ export default function Footer() {
           </label>
           <p>You have {todos.filter(todo=>todo.isCompleted===false).length} to do </p>
           <button id="delete" onClick={deleteTodo}>Delete <i class="far fa-trash-alt"></i></button>
-   
         </div>}
       </>
     

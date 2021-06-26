@@ -3,6 +3,7 @@ import { DataContext} from './DataProvider'
 export default function FormInput() {
   const [todos, setTodos] = useContext(DataContext)
   const [todoName, setTodoName] = useState('')
+  //getting item from input adding it to todo list
   const addTodo = e => {
     e.preventDefault();
     setTodos([...todos, { name: todoName, isCompleted: false }])
