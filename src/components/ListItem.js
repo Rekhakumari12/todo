@@ -1,15 +1,16 @@
-import React,{useState,useEffect} from 'react'
-export default function ListItem({ todo, id, checkComplete,handleEditTodos}) {
+import React, { useState } from 'react'
+export default function ListItem(props) {
+  const { todo, id, checkComplete, handleEditTodos } = props
   const [onEdit, setOnEdit] = useState(false)
-  const [editValue, setEditValue]=useState(todo.name)
+  const [editValue, setEditValue] = useState(todo.name)
   const handleOnEdit = () => {
     setOnEdit(true)
   }
   const handleSave = (id) => {
     setOnEdit(false)
     if (editValue) {
-      //if inputfield has value
-      handleEditTodos(editValue,id)
+      //if inputField has value
+      handleEditTodos(editValue, id)
     } else {
       setEditValue(todo.name)
     }
@@ -25,8 +26,8 @@ export default function ListItem({ todo, id, checkComplete,handleEditTodos}) {
           name="editValue"
           value={editValue}
         />
-          {todo.name}
-        <button onClick={()=>handleSave(id)}>Save <i className="far fa-edit"></i></button>
+        {todo.name}
+        <button onClick={() => handleSave(id)}>Save <i className="far fa-edit"></i></button>
       </li>
     )
   } else {

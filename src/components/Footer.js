@@ -1,4 +1,4 @@
-import React,{useState,useEffect, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import { DataContext } from './DataProvider'
 export default function Footer() {
   const [checkAll, setCheckAll] = useState(false)
@@ -6,7 +6,7 @@ export default function Footer() {
   const handleCheckAll = () => {
     const newTodos = [...todos]
     newTodos.forEach(todo => {
-      todo.isCompleted=!checkAll
+      todo.isCompleted = !checkAll
     })
     setTodos(newTodos)
     setCheckAll(!checkAll)
@@ -14,7 +14,7 @@ export default function Footer() {
 
   const deleteTodo = () => {
     const newTodos = todos.filter(todo => {
-      return todo.isCompleted===false
+      return todo.isCompleted === false
     })
     setTodos(newTodos)
     setCheckAll(false)
@@ -26,13 +26,12 @@ export default function Footer() {
         :
         <div className="row">
           <label htmlFor="all">
-            <input type="checkbox" name="all" id="all" onChange={handleCheckAll} />
-            All
+            <input type="checkbox" name="all" id="all" onChange={handleCheckAll} /> All
           </label>
-          <p>You have {todos.filter(todo=>todo.isCompleted===false).length} to do </p>
-          <button id="delete" onClick={deleteTodo}>Delete <i class="far fa-trash-alt"></i></button>
+          <p>You have {todos.filter(todo => todo.isCompleted === false).length} to do </p>
+          <button id="delete" onClick={deleteTodo}>Delete <i className="far fa-trash-alt"></i></button>
         </div>}
-      </>
-    
+    </>
+
   )
 }
