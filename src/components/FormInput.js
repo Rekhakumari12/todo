@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { DataContext } from './DataProvider'
+import { DataContext } from '../context/DataProvider'
 export default function FormInput() {
   const [todos, setTodos] = useContext(DataContext)
   const [todoName, setTodoName] = useState('')

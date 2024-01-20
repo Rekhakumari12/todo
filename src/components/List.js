@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import ListItem from './ListItem'
-import { DataContext } from './DataProvider'
+import { DataContext } from '../context/DataProvider'
 export default function List() {
   const [todos, setTodos] = useContext(DataContext);
   //id getting from ListItem component

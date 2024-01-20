@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { DataContext } from './DataProvider'
+import { DataContext } from '../context/DataProvider'
 export default function Footer() {
   const [checkAll, setCheckAll] = useState(false)
   const [todos, setTodos] = useContext(DataContext)

@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './components/Error';
-import Layout from './components/Layout';
+import ReactTodo from './layout/ReactTodo';
+import NodeTodo from './layout/NodeTodo';
 
 const router = createBrowserRouter([
   {
@@ -13,8 +14,8 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { path: 'reactTodo', element: <Layout title={'React'} /> },
-      { path: 'nodeTodo', element: <Layout title={'Node'} /> }
+      { path: 'reactTodo', element: <ReactTodo /> },
+      { path: 'nodeTodo', element: <NodeTodo /> },
     ]
   },
 ])
