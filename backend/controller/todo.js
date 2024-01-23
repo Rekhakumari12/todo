@@ -15,7 +15,6 @@ async function handleUpdateTodoById(req, res) {
 
 async function handleCreateTodo(req, res) {
   const body = req.body
-  console.log(req.body, '===========')
   if (!body.name || !body.isCompleted) {
     res.status(400).send({ error: 'All fields required' })
   }
