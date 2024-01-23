@@ -1,0 +1,4 @@
+GET /todo get todo
+POST /todo create todo
+PATCH /todo update todo 
+DELETE /todo delete todo

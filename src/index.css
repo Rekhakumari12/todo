@@ -40,7 +40,7 @@ form input {
   flex: 5;
   border: none;
   outline: none;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid #fff3e0;
   margin: 0 5px;
   background-color: transparent;
 }
@@ -100,7 +100,7 @@ label {
 }
 h2 {
   text-align: center;
-  color: crimson;
+  color: #fff3e0;
 }
 @media (max-width: 400px) {
   .App {
