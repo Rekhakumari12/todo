@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const http = require('http')
+const cors = require('cors')
 const todoRouter = require('./routes/todo')
 const { connectMongoDb } = require('./connection')
 const express = require('express')
@@ -18,10 +19,10 @@ connectMongoDb(process.env.MONGO_URI)
 // Middleware
 app.use(express.urlencoded({ extended: false }))
 app.use(middleware)
-
+app.use(cors())
 
 // Router
-app.use('/todo', todoRouter)
+app.use('/api/todo', todoRouter)
 
 
 // create web server

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 export default function ListItem(props) {
-  const { todo, id, checkComplete, handleEditTodos } = props
+  const { todo, id, checkComplete, handleEditTodos, key } = props
   const [onEdit, setOnEdit] = useState(false)
   const [editValue, setEditValue] = useState(todo.name)
   const handleOnEdit = () => {
@@ -17,7 +17,7 @@ export default function ListItem(props) {
   }
   if (onEdit) {
     return (
-      <li>
+      <li key={key}>
         {/* when click onEdit checkbox changes into input field */}
         <input
           type="text"
@@ -32,7 +32,7 @@ export default function ListItem(props) {
     )
   } else {
     return (
-      <li>
+      <li key={key}>
         {/* if isCompleted has true then active will apply, it will cut the item */}
         <label htmlFor={id} className={todo.isCompleted ? "active" : ""}>
           <input
