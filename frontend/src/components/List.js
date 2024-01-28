@@ -13,12 +13,12 @@ export default function List() {
   const switchComplete = (id, currentTodo) => {
     if (location.pathname === NODE_APP_PATH) {
       const body = { isCompleted: !currentTodo.isCompleted }
-      axios.put(`${URL}/${id}`, body)
+      axios.patch(`${URL}/${id}`, body)
         .then(response => {
-          console.log(response.data)
+          console.log(response)
           return setTodos(response.data)
         })
-        .catch(error => console.log(error, 'while updating is completed'));
+        .catch(error => console.log(error, 'while updating isCompleted'));
     }
     else {
       //making exact copy into newTodo
@@ -32,16 +32,26 @@ export default function List() {
     }
   }
 
-  const handleEditTodos = (editValue, id) => {
-    const newTodos = [...todos]
-    newTodos.forEach((element, i) => {
-      if (i === id) {
-        element.name = editValue
-      }
-    })
-    setTodos(newTodos)
+  const handleEditTodos = (editedTodoName, id) => {
+    if (location.pathname === NODE_APP_PATH) {
+      const body = { name: editedTodoName }
+      axios.patch(`${URL}/${id}`, body)
+        .then(response => {
+          console.log(response)
+          return setTodos(response.data)
+        })
+        .catch(error => console.log(error, 'while updating todo name'));
+    }
+    else {
+      const newTodos = [...todos]
+      newTodos.forEach((element, i) => {
+        if (i === id) {
+          element.name = editedTodoName
+        }
+      })
+      setTodos(newTodos)
+    }
   }
-
   return (
     <ul>
       {

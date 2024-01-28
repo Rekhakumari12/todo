@@ -27,7 +27,7 @@ export const DataProvider = (props) => {
   //storing data in localStorage 
   useEffect(() => {
     localStorage.setItem('todoStorage', JSON.stringify(feTodos))
-  }, [feTodos, location.pathname])
+  }, [feTodos])
 
   const setTodos = location.pathname === NODE_APP_PATH ? setBeTodos : setFeTodos
   const todos = location.pathname === NODE_APP_PATH ? beTodos : feTodos
