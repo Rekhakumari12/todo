@@ -17,10 +17,10 @@ export default function FormInput() {
       console.log(todos)
       axios.post(URL, todos)
         .then(d => {
-          console.log(d)
+          console.log(d, 'post')
           setTodos([...todos, { name: todoName, isCompleted: false }])
         })
-        .catch(error => console.log(error, 'while setting data'));
+        .catch(error => console.log(error.response.data, 'while setting data'));
     }
     else {
       setTodos([...todos, { name: todoName, isCompleted: false }])

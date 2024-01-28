@@ -1,8 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { DataContext } from '../context/DataProvider'
+import { useLocation } from 'react-router-dom'
+import axios from 'axios'
+import { NODE_APP_PATH, URL } from '../constant';
+
 export default function Footer() {
   const [checkAll, setCheckAll] = useState(false)
   const [todos, setTodos] = useContext(DataContext)
+  const location = useLocation()
   const handleCheckAll = () => {
     const newTodos = [...todos]
     newTodos.forEach(todo => {
@@ -13,11 +18,20 @@ export default function Footer() {
   }
 
   const deleteTodo = () => {
-    const newTodos = todos.filter(todo => {
-      return todo.isCompleted === false
-    })
-    setTodos(newTodos)
-    setCheckAll(false)
+    if (location.pathname === NODE_APP_PATH) {
+      axios.delete(URL)
+        .then(d => {
+          setTodos(d.data)
+        })
+        .catch(error => console.log(error, 'while deleting data'));
+    }
+    else {
+      const newTodos = todos.filter(todo => {
+        return todo.isCompleted === false
+      })
+      setTodos(newTodos)
+      setCheckAll(false)
+    }
   }
 
   return (

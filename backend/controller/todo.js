@@ -1,6 +1,6 @@
 const ObjectId = require('mongoose').Types.ObjectId
-
 const Todo = require('../model/todo')
+
 async function handleGetTodo(req, res) {
   const allTodos = await Todo.find({})
   return res.status(200).send(allTodos)
@@ -35,14 +35,15 @@ async function handleCreateTodo(req, res) {
   return res.status(201).send({ success: 'success', id: result._id })
 }
 
-async function handleDeleteAllTodo(req, res) {
-  await Todo.deleteMany({})
-  return res.status(201).send({ success: "Great! you have nothing to do" })
+async function handleDeleteSelectedTodo(req, res) {
+  const result = await Todo.deleteMany({ isCompleted: true })
+  const allTodos = await Todo.find({})
+  return res.status(200).send(allTodos)
 }
 
 module.exports = {
   handleGetTodo,
   handleUpdateTodoById,
   handleCreateTodo,
-  handleDeleteAllTodo,
+  handleDeleteSelectedTodo,
 }
