@@ -9,5 +9,6 @@ router.route('/')
 
 
 router.patch('/:id', handleUpdateTodoById)
+router.put('/:id', handleUpdateTodoById)
 
 module.exports = router

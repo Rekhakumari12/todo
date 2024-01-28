@@ -38,7 +38,7 @@ export default function ListItem(props) {
           <input
             type="checkbox"
             id={id}
-            onChange={() => checkComplete(id)}
+            onChange={() => checkComplete(id, todo)}
             checked={todo.isCompleted}
           />
           {todo.name}

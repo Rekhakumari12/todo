@@ -1,16 +1,28 @@
+const ObjectId = require('mongoose').Types.ObjectId
 
 const Todo = require('../model/todo')
 async function handleGetTodo(req, res) {
   const allTodos = await Todo.find({})
-  return res.send(allTodos)
+  return res.status(200).send(allTodos)
 }
 
 async function handleUpdateTodoById(req, res) {
-  await Todo.findByIdAndUpdate(req.params.id, {
-    name: req.body.name,
-    isCompleted: req.body.isCompleted
-  })
-  return res.status(201).send({ success: 'success' })
+  const body = req.body
+  const paramId = req.params.id
+  let updatedResult;
+  try {
+    if (ObjectId.isValid(paramId)) {
+      updatedResult = await Todo.findByIdAndUpdate(paramId, {
+        name: body.name,
+        isCompleted: body.isCompleted
+      }, { new: true })
+
+      if (updatedResult) updatedResult = await Todo.find({})
+      else updatedResult = { error: 'Error while updating todo with id ' + paramId }
+    }
+  } catch (e) { console.log(e, 'error while updating data') }
+
+  return res.send(updatedResult)
 }
 
 async function handleCreateTodo(req, res) {

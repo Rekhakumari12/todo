@@ -26,13 +26,13 @@ export const DataProvider = (props) => {
 
   //storing data in localStorage 
   useEffect(() => {
-    localStorage.setItem('todoStorage', JSON.stringify(todos))
+    localStorage.setItem('todoStorage', JSON.stringify(feTodos))
   }, [feTodos, location.pathname])
 
   const setTodos = location.pathname === NODE_APP_PATH ? setBeTodos : setFeTodos
   const todos = location.pathname === NODE_APP_PATH ? beTodos : feTodos
 
-  const memoData = useMemo(() => ([todos, setTodos]), [todos])
+  const memoData = useMemo(() => ([todos, setTodos]), [todos, setTodos])
 
   return (
     <DataContext.Provider value={memoData}>
